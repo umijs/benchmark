@@ -1,0 +1,10 @@
+{
+  "name": "@example/dead-simple",
+  "private": true,
+  "scripts": {
+    "bundler": "bundler"
+  },
+  "devDependencies": {
+    "@sorrycc/bundler": "workspace:*"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "pnpm --filter @sorrycc/* run build",
+    "dev": "pnpm --filter @sorrycc/* run dev"
+  },
+  "devDependencies": {
+    "node-libs-browser-okam": "^2.2.4"
+  }
+}

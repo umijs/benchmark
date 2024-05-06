@@ -1,0 +1,19 @@
+{
+  "name": "@sorrycc/benchmark",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "father build",
+    "dev": "father dev"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "bin": {
+    "bundler": "bin/cli.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "father": "^4.4.0"
+  }
+}
