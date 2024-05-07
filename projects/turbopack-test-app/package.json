@@ -1,0 +1,14 @@
+{
+  "name": "@example/turbopack-test-app",
+  "private": true,
+  "scripts": {
+    "bundler": "bundler"
+  },
+  "devDependencies": {
+    "@sorrycc/bundler": "workspace:*"
+  },
+  "dependencies": {
+    "react": "18",
+    "react-dom": "18"
+  }
+}

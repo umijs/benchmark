@@ -14,7 +14,7 @@ export class Webpack extends BaseBundler {
       cwd: this.opts.root,
       entry: this.opts.entry,
       config: {
-        jsMinifier: opts.minify !== false ? 'terser' : 'none' as any,
+        jsMinifier: opts.minify !== false ? 'esbuild' : 'none' as any,
       },
     };
     await build(buildOpts);

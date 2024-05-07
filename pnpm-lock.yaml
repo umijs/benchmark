@@ -79,6 +79,19 @@ importers:
         specifier: workspace:*
         version: link:../../packages/bundler
 
+  projects/turbopack-test-app:
+    dependencies:
+      react:
+        specifier: '18'
+        version: 18.2.0
+      react-dom:
+        specifier: '18'
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@sorrycc/bundler':
+        specifier: workspace:*
+        version: link:../../packages/bundler
+
   projects/with-antd:
     dependencies:
       '@ant-design/icons':
