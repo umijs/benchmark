@@ -1,0 +1,10 @@
+{
+  "name": "@example/three10x",
+  "private": true,
+  "scripts": {
+    "bundler": "bundler"
+  },
+  "devDependencies": {
+    "@sorrycc/bundler": "workspace:*"
+  }
+}

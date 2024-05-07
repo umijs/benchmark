@@ -1,0 +1,25 @@
+{
+  "name": "@example/with-antd",
+  "private": true,
+  "scripts": {
+    "bundler": "bundler"
+  },
+  "devDependencies": {
+    "@sorrycc/bundler": "workspace:*"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@ant-design/pro-components": "^2.4.14",
+    "@monaco-editor/react": "^4.4.6",
+    "@tanstack/react-query": "^5.0.0-alpha.21",
+    "antd": "^5.12.2",
+    "axios": "^1.3.6",
+    "http-server": "^14.1.1",
+    "lodash": "^4.17.21",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "^6.10.0",
+    "styled-components": "^5.3.10",
+    "valtio": "^1.10.4"
+  }
+}

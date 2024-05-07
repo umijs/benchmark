@@ -5,6 +5,7 @@
     "dev": "pnpm --filter @sorrycc/* run dev"
   },
   "devDependencies": {
+    "core-js": "^3.37.0",
     "node-libs-browser-okam": "^2.2.4"
   }
 }

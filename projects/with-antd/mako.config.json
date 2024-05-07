@@ -1,0 +1,5 @@
+{
+  "externals": {},
+  "moduleIdStrategy": "hashed",
+  "optimization": { "skipModules": true, "concatenateModules": true }
+}
