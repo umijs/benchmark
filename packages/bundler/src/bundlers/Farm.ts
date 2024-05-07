@@ -12,6 +12,9 @@ export class Farm extends BaseBundler {
   async build(opts: BaseBundlerBuildOpts = {}) {
     const buildOpts = {
       root: this.opts.root,
+      plugins: [
+        require.resolve('@farmfe/plugin-react'),
+      ],
     };
     await build(buildOpts);
   }
@@ -25,7 +28,9 @@ export class Farm extends BaseBundler {
     };
     let compiler = new Compiler({
       config: buildOpts,
-      jsPlugins: [],
+      jsPlugins: [
+        require.resolve('@farmfe/plugin-react'),
+      ],
       rustPlugins: [],
     });
     let server = new Server({
