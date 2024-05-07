@@ -10,10 +10,13 @@
     "dist"
   ],
   "bin": {
-    "bundler": "bin/cli.js"
+    "benchmark": "bin/cli.js"
   },
   "devDependencies": {
-    "@types/node": "^20.12.7",
     "father": "^4.4.0"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0",
+    "tree-kill": "^1.2.2"
   }
 }

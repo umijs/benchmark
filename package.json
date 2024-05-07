@@ -2,9 +2,12 @@
   "private": true,
   "scripts": {
     "build": "pnpm --filter @sorrycc/* run build",
-    "dev": "pnpm --filter @sorrycc/* run dev"
+    "dev": "pnpm --filter @sorrycc/* run dev",
+    "benchmark": "benchmark"
   },
   "devDependencies": {
+    "@sorrycc/benchmark": "workspace:*",
+    "@types/node": "^20.12.7",
     "core-js": "^3.37.0",
     "node-libs-browser-okam": "^2.2.4"
   }
