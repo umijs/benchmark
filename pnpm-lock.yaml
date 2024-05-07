@@ -67,6 +67,12 @@ importers:
         specifier: workspace:*
         version: link:../../packages/bundler
 
+  projects/lots-of-less:
+    devDependencies:
+      '@sorrycc/bundler':
+        specifier: workspace:*
+        version: link:../../packages/bundler
+
   projects/three10x:
     devDependencies:
       '@sorrycc/bundler':

@@ -1,0 +1,10 @@
+{
+  "name": "@example/lots-of-less",
+  "private": true,
+  "scripts": {
+    "bundler": "bundler"
+  },
+  "devDependencies": {
+    "@sorrycc/bundler": "workspace:*"
+  }
+}
