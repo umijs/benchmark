@@ -59,7 +59,7 @@ async function main() {
     // 'Root HMR time': `${result.rootHmr.toFixed(2)}ms`,
     // 'Leaf HMR time': `${result.leafHmr.toFixed(2)}ms`,
     'production time': `${production.toFixed(2)}ms`,
-    'js size': `${(jsSize / 1024).toFixed(2)}kb`,
+    'js size': `${(jsSize / 1024).toFixed(2)}kB`,
   }));
   console.table(out);
 }
