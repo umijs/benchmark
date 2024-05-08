@@ -46,6 +46,14 @@ async function main() {
         fs.rmSync(path.join(cwd, 'node_modules/.cache'), { recursive: true, force: true });
       },
     },
+    {
+      name: 'vite',
+      port: 3000,
+      startedRegex: /ready in/,
+      clean({ cwd }: { cwd: string }) {
+        fs.rmSync(path.join(cwd, 'node_modules/.vite'), { recursive: true, force: true });
+      },
+    },
   ].filter((item) => {
     if (argv.tools) {
       return argv.tools.split(',').includes(item.name);

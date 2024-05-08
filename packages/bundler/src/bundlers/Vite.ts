@@ -12,11 +12,23 @@ export class Vite extends BaseBundler {
   async build(opts: BaseBundlerBuildOpts = {}) {
     const buildOpts = {
       root: this.opts.root,
+      minify: opts.minify !== false,
     };
     await vite.build(buildOpts);
   }
-
-  async dev(opts: BaseBundlerBuildOpts = {}) {
-    throw new Error('Not implemented');
+    async dev() {
+      const viteStartTime = performance.now();
+      const buildOpts = {
+        root: this.opts.root,
+        server: { port: 3000 }
+      };
+      const server = await vite.createServer(buildOpts);
+      await server.listen();
+      const info = server.config.logger.info;
+      const startupDurationString = `ready in ${Math.ceil(performance.now() - viteStartTime)} ms`;
+      info(
+        startupDurationString,
+      );
+      server.printUrls();
+    }
   }
-}
