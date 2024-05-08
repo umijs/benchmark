@@ -16,7 +16,9 @@
     "father": "^4.4.0"
   },
   "dependencies": {
+    "@types/yargs-parser": "^21.0.3",
     "playwright": "^1.44.0",
-    "tree-kill": "^1.2.2"
+    "tree-kill": "^1.2.2",
+    "yargs-parser": "^21.1.1"
   }
 }

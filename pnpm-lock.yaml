@@ -23,12 +23,18 @@ importers:
 
   packages/benchmark:
     dependencies:
+      '@types/yargs-parser':
+        specifier: ^21.0.3
+        version: 21.0.3
       playwright:
         specifier: ^1.44.0
         version: 1.44.0
       tree-kill:
         specifier: ^1.2.2
         version: 1.2.2
+      yargs-parser:
+        specifier: ^21.1.1
+        version: 21.1.1
     devDependencies:
       father:
         specifier: ^4.4.0

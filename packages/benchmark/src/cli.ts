@@ -2,6 +2,7 @@ import path from "path";
 import fs from "fs";
 import playwright from "playwright";
 import { BuildTool } from "./BuildTool";
+import yParser from "yargs-parser";
 
 interface Result {
   name: string;
@@ -14,9 +15,9 @@ interface Result {
 }
 
 async function main() {
+  let argv = yParser(process.argv.slice(2));
   let browser = await playwright.chromium.launch();
   let count = 3;
-  let hotRun = process.argv.includes('--hot');
   let buildToolsData = [
     {
       name: 'mako',
@@ -45,9 +46,17 @@ async function main() {
         fs.rmSync(path.join(cwd, 'node_modules/.cache'), { recursive: true, force: true });
       },
     },
-  ];
+  ].filter((item) => {
+    if (argv.tools) {
+      return argv.tools.split(',').includes(item.name);
+    }
+    return true;
+  });
   let buildTools = buildToolsData.map((data) => {
-    let cwd = path.join(process.cwd(), 'projects', 'turbopack-test-app');
+    let cwd = (() => {
+      let project = argv.project || 'projects/turbopack-test-app';
+      return path.resolve(process.cwd(), project);
+    })();
     return new BuildTool({
       ...data,
       cwd,
@@ -133,7 +142,7 @@ async function main() {
     result.startup = devData.startup;
     result.rootHmr = devData.rootHmr;
     result.leafHmr = devData.leafHmr;
-    if (hotRun) {
+    if (argv.hot) {
       console.log(`Getting hot startup time ${count} times`);
       result.hotStartup = (await getStartupTime({ isHot: true, count, buildTool })).startup;
     }
