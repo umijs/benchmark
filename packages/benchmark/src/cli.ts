@@ -160,7 +160,7 @@ async function main() {
 
   console.log('-----');
   console.log('Results');
-  let out = results.map(({ name, production, startup, hotStartup, rootHmr, leafHmr, jsSize }) => ({
+  let out = results.sort((a,b)=>a.startup - b.startup).map(({ name, production, startup, hotStartup, rootHmr, leafHmr, jsSize }) => ({
     name,
     'startup time': `${startup.toFixed(2)}ms`,
     ...(
