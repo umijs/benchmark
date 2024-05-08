@@ -22,10 +22,18 @@ export class BuildTool {
   #opts: BuildToolOptions;
   #child: any;
   port: number;
+  rootFile?: string;
+  leafFile?: string;
   constructor(opts: BuildToolOptions) {
     this.name = opts.name;
     this.port = opts.port;
     this.#opts = opts;
+    let benchmarkConfig = path.join(opts.cwd, 'benchmark.json');
+    if (fs.existsSync(benchmarkConfig)) {
+      let config = JSON.parse(fs.readFileSync(benchmarkConfig, 'utf8'));
+      this.rootFile = path.join(opts.cwd, config.rootFile);
+      this.leafFile = path.join(opts.cwd, config.leafFile);
+    }
   }
 
   async startServer(): Promise<{ time: number }> {

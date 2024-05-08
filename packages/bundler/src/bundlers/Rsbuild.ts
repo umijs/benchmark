@@ -19,6 +19,6 @@ export class Rsbuild extends BaseBundler {
 
   async dev(opts: BaseBundlerBuildOpts = {}) {
     let rsbuild = await createRsbuild();
-    await rsbuild.createDevServer();
+    await rsbuild.startDevServer();
   }
 }

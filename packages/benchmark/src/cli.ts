@@ -1,11 +1,13 @@
 import path from "path";
-import { rmSync } from "fs";
+import fs from "fs";
 import playwright from "playwright";
 import { BuildTool } from "./BuildTool";
 
 interface Result {
   name: string;
   startup: number;
+  rootHmr: number;
+  leafHmr: number;
   hotStartup: number;
   production: number;
   jsSize: number;
@@ -24,25 +26,25 @@ async function main() {
     {
       name: 'rsbuild',
       port: 3000,
-      startedRegex: /Client compiled/,
+      startedRegex: /Client compiled in/,
     },
-    // {
-    //   name: 'farm',
-    //   port: 3000,
-    //   startedRegex: /Client compiled/,
-    //   clean({ cwd }: { cwd: string }) {
-    //     rmSync(path.join(cwd, 'dist'), { recursive: true, force: true });
-    //     rmSync(path.join(cwd, 'node_modules/.farm'), { recursive: true, force: true });
-    //   },
-    // },
-    // {
-    //   name: 'webpack',
-    //   port: 8000,
-    //   startedRegex: /Compiled in/,
-    //   clean({ cwd }: { cwd: string }) {
-    //     rmSync(path.join(cwd, 'node_modules/.cache'), { recursive: true, force: true });
-    //   },
-    // },
+    {
+      name: 'farm',
+      port: 3000,
+      startedRegex: /Ready in/,
+      clean({ cwd }: { cwd: string }) {
+        fs.rmSync(path.join(cwd, 'dist'), { recursive: true, force: true });
+        fs.rmSync(path.join(cwd, 'node_modules/.farm'), { recursive: true, force: true });
+      },
+    },
+    {
+      name: 'webpack',
+      port: 8000,
+      startedRegex: /Compiled in/,
+      clean({ cwd }: { cwd: string }) {
+        fs.rmSync(path.join(cwd, 'node_modules/.cache'), { recursive: true, force: true });
+      },
+    },
   ];
   let buildTools = buildToolsData.map((data) => {
     let cwd = path.join(process.cwd(), 'projects', 'turbopack-test-app');
@@ -53,11 +55,12 @@ async function main() {
       buildScript: `pnpm bundler ${data.name} build`,
     });
   });
-  console.log(`Running ${hotRun ? 'hot' : 'cold'} run ${count} times`);
 
   async function getStartupTime(opts: { isHot: boolean, count: number, buildTool: BuildTool }) {
     let { isHot, count, buildTool } = opts;
     let sum = 0;
+    let rootHmrSum = 0;
+    let leafHmrSum = 0;
     for (let i = 0; i < count; i++) {
       if (!isHot) {
         await buildTool.clean();
@@ -67,12 +70,41 @@ async function main() {
       let loadPromise = page.waitForEvent('load');
       const pageLoadStart = Date.now();
       await buildTool.startServer();
-      sum += new Date().getTime() - pageLoadStart;
       page.goto(`http://localhost:${buildTool.port}`);
-      await loadPromise;
+      // TODO: fix farm dev server
+      let isFarm = opts.buildTool.name === 'farm';
+      if (!isFarm) {
+        await loadPromise;
+      }
+      sum += new Date().getTime() - pageLoadStart;
+
+      if (opts.buildTool.rootFile && !isFarm) {
+        // wait for browser runtime ready
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        let origin = fs.readFileSync(opts.buildTool.rootFile, 'utf-8');
+        let rootConsolePromise = page.waitForEvent('console', { predicate: e => e.text().includes('root hmr') });
+        fs.appendFileSync(opts.buildTool.rootFile, `\nconsole.log('root hmr');`);
+        let hmrRootStart = Date.now();
+        await rootConsolePromise;
+        rootHmrSum += Date.now() - hmrRootStart;
+        fs.writeFileSync(opts.buildTool.rootFile, origin);
+      }
+
+      if (opts.buildTool.leafFile && !isFarm) {
+        // wait for browser runtime ready
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        let origin = fs.readFileSync(opts.buildTool.leafFile, 'utf-8');
+        let leafConsolePromise = page.waitForEvent('console', { predicate: e => e.text().includes('leaf hmr') });
+        fs.appendFileSync(opts.buildTool.leafFile, `\nconsole.log('leaf hmr');`);
+        let hmrRootStart = Date.now();
+        await leafConsolePromise;
+        leafHmrSum += Date.now() - hmrRootStart;
+        fs.writeFileSync(opts.buildTool.leafFile, origin);
+      }
+
       await buildTool.stop();
     }
-    return { startup: sum / count };
+    return { startup: sum / count, rootHmr: rootHmrSum / count, leafHmr: leafHmrSum / count };
   }
 
   async function getProductionData(opts: { count: number, buildTool: BuildTool }) {
@@ -96,9 +128,15 @@ async function main() {
     };
 
     // dev
+    console.log(`Getting code startup time ${count} times`);
     let devData = await getStartupTime({ isHot: false, count, buildTool });
     result.startup = devData.startup;
-    result.hotStartup = (await getStartupTime({ isHot: true, count, buildTool })).startup;
+    result.rootHmr = devData.rootHmr;
+    result.leafHmr = devData.leafHmr;
+    if (hotRun) {
+      console.log(`Getting hot startup time ${count} times`);
+      result.hotStartup = (await getStartupTime({ isHot: true, count, buildTool })).startup;
+    }
 
     // production build
     let data = await getProductionData({ count, buildTool })
@@ -113,13 +151,17 @@ async function main() {
 
   console.log('-----');
   console.log('Results');
-  let out = results.map(({ name, production, startup, hotStartup, jsSize }) => ({
+  let out = results.map(({ name, production, startup, hotStartup, rootHmr, leafHmr, jsSize }) => ({
     name,
-    // 'startup time': result.serverStart ? `${result.startup.toFixed(2)}ms (including SSUT: ${result.serverStart.toFixed(2)}ms)` : `${result.startup.toFixed(2)}ms`,
     'startup time': `${startup.toFixed(2)}ms`,
-    'hot startup time': `${hotStartup.toFixed(2)}ms`,
-    // 'Root HMR time': `${result.rootHmr.toFixed(2)}ms`,
-    // 'Leaf HMR time': `${result.leafHmr.toFixed(2)}ms`,
+    ...(
+      hotStartup ? {
+        'hot startup time': `${hotStartup.toFixed(2)}ms`,
+      } : {}
+    ),
+    // TODO: fix farm dev server
+    'Root HMR time': name === 'farm' ? '' : `${rootHmr.toFixed(2)}ms`,
+    'Leaf HMR time': name === 'farm' ? '' : `${leafHmr.toFixed(2)}ms`,
     'production time': `${production.toFixed(2)}ms`,
     'js size': `${(jsSize / 1024).toFixed(2)}kB`,
   }));

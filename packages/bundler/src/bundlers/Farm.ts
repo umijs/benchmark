@@ -1,5 +1,6 @@
 import { BaseBundler, BaseBundlerBuildOpts, BaseBundlerOpts } from "./BaseBundler";
 import { build, Server, logger, Compiler } from '@farmfe/core';
+// import react from '@farmfe/plugin-react';
 
 interface FarmOpts extends BaseBundlerOpts {
 }
@@ -9,17 +10,17 @@ export class Farm extends BaseBundler {
     super(opts);
   }
 
-  async build(opts: BaseBundlerBuildOpts = {}) {
+  async build(_opts: BaseBundlerBuildOpts = {}) {
     const buildOpts = {
       root: this.opts.root,
       plugins: [
-        require.resolve('@farmfe/plugin-react'),
+        // react,
       ],
     };
     await build(buildOpts);
   }
 
-  async dev(opts: BaseBundlerBuildOpts = {}) {
+  async dev(_opts: BaseBundlerBuildOpts = {}) {
     const buildOpts = {
       root: this.opts.root,
       output: {
@@ -29,7 +30,7 @@ export class Farm extends BaseBundler {
     let compiler = new Compiler({
       config: buildOpts,
       jsPlugins: [
-        require.resolve('@farmfe/plugin-react'),
+        // react,
       ],
       rustPlugins: [],
     });
