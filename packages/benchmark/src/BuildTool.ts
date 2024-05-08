@@ -3,6 +3,10 @@ import path from 'path';
 import fs from 'fs';
 import kill from "tree-kill";
 
+interface CleanOptions {
+  cwd: string;
+}
+
 interface BuildToolOptions {
   name: string,
   cwd: string,
@@ -10,31 +14,40 @@ interface BuildToolOptions {
   startedRegex: RegExp,
   script: string,
   buildScript: string,
-  clean?: Function,
+  clean?: (opts: CleanOptions) => void,
 }
 
 export class BuildTool {
   name: string;
   #opts: BuildToolOptions;
   #child: any;
+  port: number;
   constructor(opts: BuildToolOptions) {
     this.name = opts.name;
+    this.port = opts.port;
     this.#opts = opts;
   }
 
-  async startServer() {
+  async startServer(): Promise<{ time: number }> {
     let startTime = new Date().getTime();
-    let child = spawn(`npm`, ["run", this.#opts.script], { stdio: 'pipe', shell: true, env: { ...process.env, NO_COLOR: '1' } });
+    let script = this.#opts.script.split(' ');
+    let child = spawn(script[0], script.slice(1), {
+      cwd: this.#opts.cwd,
+      stdio: 'pipe',
+      shell: true,
+      env: { ...process.env, NO_COLOR: '1' },
+    });
     this.#child = child;
     process.on('exit', async () => {
-      await this.#stop();
+      await this.stop();
     });
     return new Promise((resolve, reject) => {
       child.stdout.on('data', (data) => {
         process.stdout.write(data);
         const match = this.#opts.startedRegex.exec(data);
         if (match) {
-          resolve(new Date().getTime() - startTime);
+          let time = new Date().getTime() - startTime;
+          resolve({ time });
         }
       });
       child.on('error', (error) => {
@@ -50,7 +63,7 @@ export class BuildTool {
     });
   }
 
-  async #stop() {
+  async stop() {
     if (this.#child) {
       this.#child.stdin.pause();
       this.#child.stdout.destroy();
@@ -104,6 +117,6 @@ export class BuildTool {
   }
 
   async clean() {
-    await this.#opts.clean?.();
+    await this.#opts.clean?.({ cwd: this.#opts.cwd });
   }
 }

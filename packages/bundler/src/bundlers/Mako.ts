@@ -23,6 +23,12 @@ export class Mako extends BaseBundler {
   }
 
   async dev() {
-    throw new Error('Not implemented');
+    await build({
+      root: this.opts.root,
+      // @ts-ignore
+      config: {},
+      hooks: {},
+      watch: true,
+    });
   }
 }
