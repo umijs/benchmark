@@ -4,8 +4,7 @@
 
 ```bash
 $ pnpm i
-$ pnpm build
-$ cd packages/benchmark && pnpm exec playwright install
+$ pnpm run setup
 $ pnpm benchmark
 ```
 

@@ -160,20 +160,22 @@ async function main() {
 
   console.log('-----');
   console.log('Results');
-  let out = results.sort((a,b)=>a.startup - b.startup).map(({ name, production, startup, hotStartup, rootHmr, leafHmr, jsSize }) => ({
-    name,
-    'startup time': `${startup.toFixed(2)}ms`,
-    ...(
-      hotStartup ? {
-        'hot startup time': `${hotStartup.toFixed(2)}ms`,
-      } : {}
-    ),
-    // TODO: fix farm dev server
-    'Root HMR time': name === 'farm' ? '' : `${rootHmr.toFixed(2)}ms`,
-    'Leaf HMR time': name === 'farm' ? '' : `${leafHmr.toFixed(2)}ms`,
-    'production time': `${production.toFixed(2)}ms`,
-    'js size': `${(jsSize / 1024).toFixed(2)}kB`,
-  }));
+  let out = results
+    .sort((a, b) => a.startup - b.startup)
+    .map(({ name, production, startup, hotStartup, rootHmr, leafHmr, jsSize }) => ({
+      name,
+      'startup time': `${startup.toFixed(2)}ms`,
+      ...(
+        hotStartup ? {
+          'hot startup time': `${hotStartup.toFixed(2)}ms`,
+        } : {}
+      ),
+      // TODO: fix farm dev server
+      'Root HMR time': name === 'farm' ? '' : `${rootHmr.toFixed(2)}ms`,
+      'Leaf HMR time': name === 'farm' ? '' : `${leafHmr.toFixed(2)}ms`,
+      'production time': `${production.toFixed(2)}ms`,
+      'js size': `${(jsSize / 1024).toFixed(2)}kB`,
+    }));
   console.table(out);
 }
 

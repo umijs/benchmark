@@ -3,6 +3,7 @@
   "scripts": {
     "build": "pnpm --filter @sorrycc/* run build",
     "dev": "pnpm --filter @sorrycc/* run dev",
+    "setup": "pnpm --filter @sorrycc/benchmark exec playwright install && pnpm build",
     "benchmark": "benchmark"
   },
   "devDependencies": {
