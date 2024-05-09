@@ -8,7 +8,7 @@ $ pnpm run setup
 $ pnpm benchmark
 ```
 
-By default, the benchmark will run all the tools (mako, rsbuild, farm and webpack) and the projects (project/turbopack-test-app). You can specify the tools and the projects by using the following command.
+By default, the benchmark will run all the tools (mako, rsbuild, farm, webpack and vite) and the projects (project/turbopack-test-app). You can specify the tools and the projects by using the following command.
 
 ```bash
 $ pnpm benchmark --tools mako,rsbuild --project projects/lots-of-less
