@@ -21,7 +21,7 @@ export class Webpack extends BaseBundler {
     await build(buildOpts);
   }
 
-  async dev(opts: BaseBundlerBuildOpts = {}) {
+  async dev() {
     const buildOpts = {
       cwd: this.opts.root,
       entry: this.opts.entry,

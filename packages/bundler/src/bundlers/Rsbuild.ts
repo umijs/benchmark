@@ -1,4 +1,4 @@
-import { BaseBundler, BaseBundlerBuildOpts, BaseBundlerOpts } from "./BaseBundler";
+import { BaseBundler, BaseBundlerOpts } from "./BaseBundler";
 import { createRsbuild } from '@rsbuild/core';
 
 interface RsbuildOpts extends BaseBundlerOpts {
@@ -9,15 +9,12 @@ export class Rsbuild extends BaseBundler {
     super(opts);
   }
 
-  async build(opts: BaseBundlerBuildOpts = {}) {
-    const buildOpts = {
-      root: this.opts.root,
-    };
+  async build() {
     let rsbuild = await createRsbuild();
     await rsbuild.build();
   }
 
-  async dev(opts: BaseBundlerBuildOpts = {}) {
+  async dev() {
     let rsbuild = await createRsbuild();
     await rsbuild.startDevServer();
   }

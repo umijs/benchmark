@@ -4,7 +4,7 @@
 
 ```bash
 $ pnpm i
-$ pnpm build
+$ pnpm run setup
 $ pnpm benchmark
 ```
 

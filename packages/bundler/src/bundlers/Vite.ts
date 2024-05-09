@@ -1,4 +1,4 @@
-import { BaseBundler, BaseBundlerBuildOpts, BaseBundlerOpts } from "./BaseBundler";
+import { BaseBundler, BaseBundlerOpts } from "./BaseBundler";
 import vite from 'vite';
 
 interface ViteOpts extends BaseBundlerOpts {
@@ -9,13 +9,14 @@ export class Vite extends BaseBundler {
     super(opts);
   }
 
-  async build(opts: BaseBundlerBuildOpts = {}) {
+  async build() {
     const buildOpts = {
       root: this.opts.root,
       minify: opts.minify !== false,
     };
     await vite.build(buildOpts);
   }
+
   async dev() {
     const viteStartTime = performance.now();
     const buildOpts = {
