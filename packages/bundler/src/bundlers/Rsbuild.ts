@@ -1,5 +1,6 @@
 import { BaseBundler, BaseBundlerOpts } from "./BaseBundler";
 import { createRsbuild } from '@rsbuild/core';
+import { pluginNodePolyfill } from '@rsbuild/plugin-node-polyfill';
 
 interface RsbuildOpts extends BaseBundlerOpts {
 }
@@ -11,6 +12,7 @@ export class Rsbuild extends BaseBundler {
 
   async build() {
     let rsbuild = await createRsbuild();
+    rsbuild.addPlugins([pluginNodePolyfill()]);
     await rsbuild.build();
   }
 
