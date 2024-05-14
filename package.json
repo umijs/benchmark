@@ -10,6 +10,7 @@
     "@sorrycc/benchmark": "workspace:*",
     "@types/node": "^20.12.7",
     "core-js": "^3.37.0",
-    "node-libs-browser-okam": "^2.2.4"
+    "node-libs-browser-okam": "^2.2.4",
+    "react-refresh": "^0.14.2"
   }
 }
