@@ -1,5 +1,5 @@
 import { BaseBundler, BaseBundlerBuildOpts, BaseBundlerOpts } from "./BaseBundler";
-import { build } from '@okamjs/okam';
+import { build } from '@umijs/mako';
 
 interface MakoOpts extends BaseBundlerOpts {
 }
@@ -17,7 +17,7 @@ export class Mako extends BaseBundler {
         mode: 'production',
         minify: opts.minify !== false,
       },
-      hooks: {},
+      plugins: [],
       watch: false,
     });
   }
@@ -27,7 +27,7 @@ export class Mako extends BaseBundler {
       root: this.opts.root,
       // @ts-ignore
       config: {},
-      hooks: {},
+      plugins: [],
       watch: true,
     });
   }
