@@ -47,7 +47,7 @@ function showHelp() {
     mako            Mako
     vite            Vite
     webpack         Webpack
-    rsbuild         RSBuild
+    rsbuild         RsBuild
     farm            Farm
 
   Examples:
