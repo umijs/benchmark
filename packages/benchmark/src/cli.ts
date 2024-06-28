@@ -17,43 +17,39 @@ interface Result {
 async function main() {
   let argv = yParser(process.argv.slice(2));
   let browser = await playwright.chromium.launch();
-  let count = 3;
+  let count = 1;
   let buildToolsData = [
-    {
-      name: 'mako',
-      port: 3000,
-      startedRegex: /Built in/
-    },
-    {
-      name: 'rsbuild',
-      port: 3000,
-      startedRegex: /Client compiled in/,
-    },
+    // {
+    //   name: 'mako',
+    //   port: 3000,
+    //   startedRegex: /Built in/
+    // },
+    // {
+    //   name: 'rsbuild',
+    //   port: 3000,
+    //   startedRegex: /Client compiled in/,
+    // },
     {
       name: 'farm',
-      port: 3000,
+      port: 9000,
       startedRegex: /Ready in/,
-      clean({ cwd }: { cwd: string }) {
-        fs.rmSync(path.join(cwd, 'dist'), { recursive: true, force: true });
-        fs.rmSync(path.join(cwd, 'node_modules/.farm'), { recursive: true, force: true });
-      },
     },
-    {
-      name: 'webpack',
-      port: 8000,
-      startedRegex: /Compiled in/,
-      clean({ cwd }: { cwd: string }) {
-        fs.rmSync(path.join(cwd, 'node_modules/.cache'), { recursive: true, force: true });
-      },
-    },
-    {
-      name: 'vite',
-      port: 3000,
-      startedRegex: /ready in/,
-      clean({ cwd }: { cwd: string }) {
-        fs.rmSync(path.join(cwd, 'node_modules/.vite'), { recursive: true, force: true });
-      },
-    },
+    // {
+    //   name: 'webpack',
+    //   port: 8000,
+    //   startedRegex: /Compiled in/,
+    //   clean({ cwd }: { cwd: string }) {
+    //     fs.rmSync(path.join(cwd, 'node_modules/.cache'), { recursive: true, force: true });
+    //   },
+    // },
+    // {
+    //   name: 'vite',
+    //   port: 3000,
+    //   startedRegex: /ready in/,
+    //   clean({ cwd }: { cwd: string }) {
+    //     fs.rmSync(path.join(cwd, 'node_modules/.vite'), { recursive: true, force: true });
+    //   },
+    // },
   ].filter((item) => {
     if (argv.tools) {
       return argv.tools.split(',').includes(item.name);
@@ -82,11 +78,13 @@ async function main() {
       if (!isHot) {
         await buildTool.clean();
       }
+
       let page = await (await browser.newContext()).newPage();
       await new Promise((resolve) => setTimeout(resolve, 300));
       let loadPromise = page.waitForEvent('load');
       const pageLoadStart = Date.now();
       await buildTool.startServer();
+      await sleep(1000000)
       page.goto(`http://localhost:${buildTool.port}`);
       // TODO: fix farm dev server
       let isFarm = opts.buildTool.name === 'farm';
@@ -191,3 +189,7 @@ main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

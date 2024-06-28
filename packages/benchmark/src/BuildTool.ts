@@ -39,13 +39,17 @@ export class BuildTool {
   async startServer(): Promise<{ time: number }> {
     let startTime = new Date().getTime();
     let script = this.#opts.script.split(' ');
+    console.log(script.slice(1));
+    console.log(this.#opts.cwd);
+
     let child = spawn(script[0], script.slice(1), {
       cwd: this.#opts.cwd,
       stdio: 'pipe',
       shell: true,
-      env: { ...process.env, NO_COLOR: '1' },
+      env: { ...process.env },
     });
     this.#child = child;
+
     process.on('exit', async () => {
       await this.stop();
     });
@@ -72,14 +76,12 @@ export class BuildTool {
   }
 
   async stop() {
-    if (this.#child) {
-      this.#child.stdin.pause();
-      this.#child.stdout.destroy();
-      this.#child.stderr.destroy();
-      return new Promise((resolve) => {
-        kill(this.#child.pid, resolve);
-      });
-    }
+    this.#child.stdin.pause();
+    this.#child.stdout.destroy();
+    this.#child.stderr.destroy();
+    return new Promise((resolve) => {
+      kill(this.#child.pid, resolve);
+    });
   }
 
   #jsSize(dirPath: string) {

@@ -31,8 +31,14 @@ function Container({ style }) {
         <g transform="translate(2.5 2.16)  scale(0.5 0.5)">
             <C style={style} />
         </g>
-        
+
     </>;
 }
 
 export default React.memo(Container);
+
+console.log('root hmr');
+console.log('root hmr');
+console.log('root hmr');
+console.log('root hmr');
+console.log('root hmr');
