@@ -39,7 +39,6 @@ export class BuildTool {
   async startServer(): Promise<{ time: number }> {
     let startTime = new Date().getTime();
     let script = this.#opts.script.split(' ');
-
     let child = spawn(script[0], script.slice(1), {
       cwd: this.#opts.cwd,
       stdio: 'pipe',

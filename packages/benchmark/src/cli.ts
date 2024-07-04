@@ -81,7 +81,6 @@ async function main() {
       if (!isHot) {
         await buildTool.clean();
       }
-
       let page = await (await browser.newContext()).newPage();
       await new Promise((resolve) => setTimeout(resolve, 300));
       let loadPromise = page.waitForEvent('load');

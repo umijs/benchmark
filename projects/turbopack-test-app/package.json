@@ -1,19 +1,11 @@
 {
   "name": "@example/turbopack-test-app",
   "private": true,
-  "type": "module",
   "scripts": {
     "bundler": "bundler"
   },
   "devDependencies": {
-    "@farmfe/cli": "^1.0.2",
-    "@farmfe/core": "1.2.0",
-    "@sorrycc/bundler": "workspace:*",
-    "@farmfe/plugin-react": "^1.0.1",
-    "@types/react": "18",
-    "core-js": "^3.36.1",
-    "@types/react-dom": "18",
-    "react-refresh": "^0.14.0"
+    "@sorrycc/bundler": "workspace:*"
   },
   "dependencies": {
     "react": "18",

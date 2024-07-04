@@ -38,15 +38,3 @@ function Container({ style }) {
 export default React.memo(Container);
 
 console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
-console.log('root hmr');
