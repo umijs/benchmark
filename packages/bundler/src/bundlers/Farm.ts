@@ -14,9 +14,6 @@ export class Farm extends BaseBundler {
       compilation: {
         persistentCache: false,
         sourcemap: false,
-        output: {
-          targetEnv: "browser-next"
-        }
       },
       plugins: [
         '@farmfe/plugin-react'

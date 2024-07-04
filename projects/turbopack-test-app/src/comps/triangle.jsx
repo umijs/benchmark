@@ -48,3 +48,5 @@ console.log('root hmr');
 console.log('root hmr');
 console.log('root hmr');
 console.log('root hmr');
+console.log('root hmr');
+console.log('root hmr');

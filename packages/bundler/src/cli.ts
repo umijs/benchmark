@@ -18,21 +18,12 @@ const VALID_COMMANDS = ["build", "dev"];
     showHelp();
     return;
   }
-
   assert(VALID_BUILDERS.includes(bundler as string), `Invalid bundler: ${bundler}`);
   assert(VALID_COMMANDS.includes(command as string), `Invalid command: ${command}`);
-
   let type = bundler[0].toUpperCase() + bundler.slice(1);
-
   console.log(`Building with ${bundler}...`);
-  try {
-    await import(`./bundlers/${type}.js`)
-  } catch (error) {
-    console.error(`Failed to import module: ${error}`);
-  }
 
   let Bundler = (await import(`./bundlers/${type}.js`))[type];
-
   new Bundler({
     root: process.cwd(),
     entry: {},

@@ -17,7 +17,7 @@ interface Result {
 async function main() {
   let argv = yParser(process.argv.slice(2));
   let browser = await playwright.chromium.launch();
-  let count = 1;
+  let count = 3;
   let buildToolsData = [
     {
       name: 'mako',
@@ -33,6 +33,9 @@ async function main() {
       name: 'farm',
       port: 9000,
       startedRegex: /Ready in/,
+      clean({ cwd }: { cwd: string }) {
+        fs.rmSync(path.join(cwd, 'dist'), { recursive: true, force: true });
+      },
     },
     {
       name: 'webpack',
