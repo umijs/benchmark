@@ -7,7 +7,6 @@ const VALID_COMMANDS = ["build", "dev"];
 
 (async () => {
   let [bundler, command] = argv._ as string[];
-
   if (argv.h || argv.help) {
     showHelp();
     return;
@@ -22,7 +21,6 @@ const VALID_COMMANDS = ["build", "dev"];
   assert(VALID_COMMANDS.includes(command as string), `Invalid command: ${command}`);
   let type = bundler[0].toUpperCase() + bundler.slice(1);
   console.log(`Building with ${bundler}...`);
-
   let Bundler = (await import(`./bundlers/${type}.js`))[type];
   new Bundler({
     root: process.cwd(),

@@ -26,7 +26,6 @@ export class Farm extends BaseBundler {
 
     const buildOpts = {
       root: this.opts.root,
-      clearScreen: false,
       compilation: {
         persistentCache: false,
       },
