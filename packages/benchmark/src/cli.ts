@@ -31,11 +31,10 @@ async function main() {
     },
     {
       name: 'farm',
-      port: 3000,
+      port: 9000,
       startedRegex: /Ready in/,
       clean({ cwd }: { cwd: string }) {
         fs.rmSync(path.join(cwd, 'dist'), { recursive: true, force: true });
-        fs.rmSync(path.join(cwd, 'node_modules/.farm'), { recursive: true, force: true });
       },
     },
     {
@@ -95,7 +94,7 @@ async function main() {
       }
       sum += new Date().getTime() - pageLoadStart;
 
-      if (opts.buildTool.rootFile && !isFarm) {
+      if (opts.buildTool.rootFile) {
         // wait for browser runtime ready
         await new Promise((resolve) => setTimeout(resolve, 300));
         let origin = fs.readFileSync(opts.buildTool.rootFile, 'utf-8');
@@ -107,7 +106,7 @@ async function main() {
         fs.writeFileSync(opts.buildTool.rootFile, origin);
       }
 
-      if (opts.buildTool.leafFile && !isFarm) {
+      if (opts.buildTool.leafFile) {
         // wait for browser runtime ready
         await new Promise((resolve) => setTimeout(resolve, 300));
         let origin = fs.readFileSync(opts.buildTool.leafFile, 'utf-8');
@@ -179,8 +178,8 @@ async function main() {
         } : {}
       ),
       // TODO: fix farm dev server
-      'Root HMR time': name === 'farm' ? '' : `${rootHmr.toFixed(2)}ms`,
-      'Leaf HMR time': name === 'farm' ? '' : `${leafHmr.toFixed(2)}ms`,
+      'Root HMR time': `${rootHmr.toFixed(2)}ms`,
+      'Leaf HMR time': `${leafHmr.toFixed(2)}ms`,
       'production time': `${production.toFixed(2)}ms`,
       'js size': `${(jsSize / 1024).toFixed(2)}kB`,
     }));
