@@ -29,7 +29,6 @@ export class Farm extends BaseBundler {
       clearScreen: false,
       compilation: {
         persistentCache: false,
-        progress: false,
       },
       plugins: ['@farmfe/plugin-react']
     };
