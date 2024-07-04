@@ -46,8 +46,8 @@ importers:
   packages/bundler:
     dependencies:
       '@farmfe/core':
-        specifier: 1.2.0
-        version: 1.2.0
+        specifier: 1.2.6
+        version: 1.2.6
       '@farmfe/plugin-react':
         specifier: ^1.1.0
         version: 1.1.0
@@ -805,8 +805,20 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
+  '@farmfe/core-darwin-arm64@1.2.6':
+    resolution: {integrity: sha512-+U+VdLKo3i2M3ANeHaSt1wZoe3Z0gT8YvxIcEZvk3OrZVe7LqSCbORkvXhMwyFblDKxzrhv75Em5/L+5CF8o/g==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+
   '@farmfe/core-darwin-x64@1.2.0':
     resolution: {integrity: sha512-8Cg9feI0D0wgsR+VsJPU5zGKOsEmRnqZqSM86eXDg6/rNFsjzTiWlwTxQpZjC01vsHPSbj7bMfaXxBw92dG/FA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@farmfe/core-darwin-x64@1.2.6':
+    resolution: {integrity: sha512-EjMQHIlKvoQJ1EYqbuZosE+C7l6ol5ZFZlTCxzNUSlGevGtj20Zqi41idVeXcsn/goxwi1kxpaIxt+nPetmgtQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -817,8 +829,20 @@ packages:
     cpu: [arm64]
     os: [linux]
 
+  '@farmfe/core-linux-arm64-gnu@1.2.6':
+    resolution: {integrity: sha512-tqYMXBxshi858jkKH/5vz9pVsh6b9f0zX9ZTcmWS4a8qED//rG45p9eXwgpVVdr+SVKqPoQauhf1Imgu1HgIsg==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+
   '@farmfe/core-linux-arm64-musl@1.2.0':
     resolution: {integrity: sha512-wd/OULSrs2Ns5C3GJQEoLaujAuuBUX9ZNQtFDYIW3x/5+Ray74aMs9ir1A0ZKVAS1GY4+E1QXI7do0LSJby38g==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@farmfe/core-linux-arm64-musl@1.2.6':
+    resolution: {integrity: sha512-a6OtdzA5V45eado8Lh6iCzFIkgqvdEAvRZoWkYCB29FzLb8TDKjEA3/R1q5cOe+CTUPPvAF6DgEZApsNJQkC2Q==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -829,8 +853,20 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  '@farmfe/core-linux-x64-gnu@1.2.6':
+    resolution: {integrity: sha512-jniNdzCUYlbPHp1xR5XDodEcJw5feB3hZPXXOe44zmW0Nc3AEbU5/U4q2uY1BkL/KymzlpFJJOyvGt+78SWoOQ==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+
   '@farmfe/core-linux-x64-musl@1.2.0':
     resolution: {integrity: sha512-QFv6Vb+OPvxE0E7ujWreZB6nRKhnpFq6xMaOclazTZ3cWX0vWXbgTKMSdiO+WlyIzwxPHbKhbPFxHyAjoE8zzg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+
+  '@farmfe/core-linux-x64-musl@1.2.6':
+    resolution: {integrity: sha512-G/7SpuKjoNx2sDWQEqMyWhyZqBMNETbwgxUTs8IxsqOCM2l9eoi6/5JUAzlkpguf/Qyy/ehCNNnVoLsqXfXcKg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -841,8 +877,20 @@ packages:
     cpu: [arm64]
     os: [win32]
 
+  '@farmfe/core-win32-arm64-msvc@1.2.6':
+    resolution: {integrity: sha512-QFehFoJoIoqL6qRypShIEqdQjx/TJfdnNAp+07z7yX1dbaOAharqgY3OZEDxmXoTbcMyM06OpEqwU71PEN+XpQ==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [win32]
+
   '@farmfe/core-win32-ia32-msvc@1.2.0':
     resolution: {integrity: sha512-yJbgbFTXUGRD7JdtTe+Bfbu+1egVhkthj7s7eaOJEFtaY3Dq2OLoguUgyWfRS/TSkNjM4zJz5qdzVRppXKlpUg==}
+    engines: {node: '>= 10'}
+    cpu: [ia32]
+    os: [win32]
+
+  '@farmfe/core-win32-ia32-msvc@1.2.6':
+    resolution: {integrity: sha512-A0I/5D8WU3Pbdv+j5+r6m/W6eWgl8XlENrvXfWUexnC3cP1TkdQ5LI9Yy+VI9kk1vL5GV5TbnCErRn9rkZMI+Q==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
@@ -853,8 +901,18 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@farmfe/core-win32-x64-msvc@1.2.6':
+    resolution: {integrity: sha512-SKc3CJjQnRFgisdQKSxAIx9bE4pBHj1o3+C6FGwQdMUzb13a1jCf+++Jf2E++7tjNvI0qarGWyTDUL8JibUNpg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+
   '@farmfe/core@1.2.0':
     resolution: {integrity: sha512-YVW9zsmM7J+/48C2WcxXqls4MUi3TYu+/BQUYRS+jpat2gFcn5WbBvlC/dc7tBBKT982iGuBhh3XH9qSToEdlA==}
+    engines: {node: '>=16.15.1'}
+
+  '@farmfe/core@1.2.6':
+    resolution: {integrity: sha512-jMtuO82MMYGRtLcPlUCn25yzLtvr31D7MnYm4LaZcsLd+Kr8ube4zDN/b1lKzAPpwcsDUXGUCuwcS0iuicLhfg==}
     engines: {node: '>=16.15.1'}
 
   '@farmfe/plugin-react-darwin-arm64@1.1.0':
@@ -920,8 +978,14 @@ packages:
   '@farmfe/runtime-plugin-import-meta@0.2.0':
     resolution: {integrity: sha512-3RXUzeKDmuGiOY7k6OThNok6Dj/Nl2pK62fC7/227O6WEfvWleVxLzXkqLZrMBv1OZNem/cloftMMjYDP/+q8Q==}
 
+  '@farmfe/runtime-plugin-import-meta@0.2.1':
+    resolution: {integrity: sha512-h9r/Wa2+HmJNffaoWKJuJvCq4RknED4MSAy0Cc+PuzqA1WvSUJcFYJ/I7kdyhUawU9qOv+kD1oQWx6QWoisBng==}
+
   '@farmfe/runtime@0.11.1':
     resolution: {integrity: sha512-aD/wODr+K0WdOHIClfjDL0V/wqFmUHfGluHnIgozgekX+Rg3l7t5pbD+KRNxuA10z584qHvCwUlVDGF4bne9Lg==}
+
+  '@farmfe/runtime@0.11.2':
+    resolution: {integrity: sha512-oRcB9437RpCG4+wxc2oZyeqorj2nL/AfBXrUJmUg22em2R3YtlSoBSE4aSp/DG6xqn+buqpHgvW6Rts/WsDZgQ==}
 
   '@farmfe/utils@0.1.0':
     resolution: {integrity: sha512-neNJQGqV7XL4XifG1uHOBFSFLy2yx1/DVZNRA7nfeEAXEksVZTwWA+fZrYEaI0w7Sw6K/9NYn9Jgpn+NAT0mcg==}
@@ -2148,6 +2212,10 @@ packages:
 
   dotenv-expand@10.0.0:
     resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
+    engines: {node: '>=12'}
+
+  dotenv-expand@11.0.6:
+    resolution: {integrity: sha512-8NHi73otpWsZGBSZwwknTXS5pqMOrk9+Ssrna8xCaxkzEpU9OTf9R5ArQGVw03//Zmk9MOwLPng9WwndvpAJ5g==}
     engines: {node: '>=12'}
 
   dotenv@16.4.5:
@@ -5280,28 +5348,55 @@ snapshots:
   '@farmfe/core-darwin-arm64@1.2.0':
     optional: true
 
+  '@farmfe/core-darwin-arm64@1.2.6':
+    optional: true
+
   '@farmfe/core-darwin-x64@1.2.0':
+    optional: true
+
+  '@farmfe/core-darwin-x64@1.2.6':
     optional: true
 
   '@farmfe/core-linux-arm64-gnu@1.2.0':
     optional: true
 
+  '@farmfe/core-linux-arm64-gnu@1.2.6':
+    optional: true
+
   '@farmfe/core-linux-arm64-musl@1.2.0':
+    optional: true
+
+  '@farmfe/core-linux-arm64-musl@1.2.6':
     optional: true
 
   '@farmfe/core-linux-x64-gnu@1.2.0':
     optional: true
 
+  '@farmfe/core-linux-x64-gnu@1.2.6':
+    optional: true
+
   '@farmfe/core-linux-x64-musl@1.2.0':
+    optional: true
+
+  '@farmfe/core-linux-x64-musl@1.2.6':
     optional: true
 
   '@farmfe/core-win32-arm64-msvc@1.2.0':
     optional: true
 
+  '@farmfe/core-win32-arm64-msvc@1.2.6':
+    optional: true
+
   '@farmfe/core-win32-ia32-msvc@1.2.0':
     optional: true
 
+  '@farmfe/core-win32-ia32-msvc@1.2.6':
+    optional: true
+
   '@farmfe/core-win32-x64-msvc@1.2.0':
+    optional: true
+
+  '@farmfe/core-win32-x64-msvc@1.2.6':
     optional: true
 
   '@farmfe/core@1.2.0':
@@ -5343,6 +5438,51 @@ snapshots:
       '@farmfe/core-win32-arm64-msvc': 1.2.0
       '@farmfe/core-win32-ia32-msvc': 1.2.0
       '@farmfe/core-win32-x64-msvc': 1.2.0
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - supports-color
+      - utf-8-validate
+
+  '@farmfe/core@1.2.6':
+    dependencies:
+      '@farmfe/runtime': 0.11.2
+      '@farmfe/runtime-plugin-hmr': 3.5.2
+      '@farmfe/runtime-plugin-import-meta': 0.2.1
+      '@farmfe/utils': 0.1.0
+      '@koa/cors': 5.0.0
+      '@swc/helpers': 0.5.3
+      chokidar: 3.6.0
+      deepmerge: 4.3.1
+      dotenv: 16.4.5
+      dotenv-expand: 11.0.6
+      execa: 7.2.0
+      farm-browserslist-generator: 1.0.0
+      fast-glob: 3.3.2
+      fs-extra: 11.2.0
+      is-plain-object: 5.0.0
+      koa: 2.15.3
+      koa-compress: 5.1.1
+      koa-proxies: 0.12.4(koa@2.15.3)
+      koa-static: 5.0.0
+      lodash.debounce: 4.0.8
+      loglevel: 1.9.1
+      mime-types: 2.1.35
+      open: 9.1.0
+      slashes: 3.0.12
+      ws: 8.17.0
+      zod: 3.23.6
+      zod-validation-error: 1.3.1(zod@3.23.6)
+    optionalDependencies:
+      '@farmfe/core-darwin-arm64': 1.2.6
+      '@farmfe/core-darwin-x64': 1.2.6
+      '@farmfe/core-linux-arm64-gnu': 1.2.6
+      '@farmfe/core-linux-arm64-musl': 1.2.6
+      '@farmfe/core-linux-x64-gnu': 1.2.6
+      '@farmfe/core-linux-x64-musl': 1.2.6
+      '@farmfe/core-win32-arm64-msvc': 1.2.6
+      '@farmfe/core-win32-ia32-msvc': 1.2.6
+      '@farmfe/core-win32-x64-msvc': 1.2.6
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -5396,7 +5536,15 @@ snapshots:
     dependencies:
       core-js: 3.37.0
 
+  '@farmfe/runtime-plugin-import-meta@0.2.1':
+    dependencies:
+      core-js: 3.37.0
+
   '@farmfe/runtime@0.11.1':
+    dependencies:
+      core-js: 3.37.0
+
+  '@farmfe/runtime@0.11.2':
     dependencies:
       core-js: 3.37.0
 
@@ -6892,6 +7040,10 @@ snapshots:
       domhandler: 4.3.1
 
   dotenv-expand@10.0.0: {}
+
+  dotenv-expand@11.0.6:
+    dependencies:
+      dotenv: 16.4.5
 
   dotenv@16.4.5: {}
 

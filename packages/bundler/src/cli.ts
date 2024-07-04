@@ -7,7 +7,6 @@ const VALID_COMMANDS = ["build", "dev"];
 
 (async () => {
   let [bundler, command] = argv._ as string[];
-  console.log(bundler, command);
 
   if (argv.h || argv.help) {
     showHelp();
@@ -19,14 +18,11 @@ const VALID_COMMANDS = ["build", "dev"];
     showHelp();
     return;
   }
-  console.log("走进来没");
 
   assert(VALID_BUILDERS.includes(bundler as string), `Invalid bundler: ${bundler}`);
   assert(VALID_COMMANDS.includes(command as string), `Invalid command: ${command}`);
-  console.log("这块进不来啊");
 
   let type = bundler[0].toUpperCase() + bundler.slice(1);
-  console.log(type);
 
   console.log(`Building with ${bundler}...`);
   try {
@@ -36,17 +32,14 @@ const VALID_COMMANDS = ["build", "dev"];
   }
 
   let Bundler = (await import(`./bundlers/${type}.js`))[type];
-  console.log(Bundler);
 
   new Bundler({
     root: process.cwd(),
     entry: {},
   })[command](argv);
 })().catch((e) => {
-  console.log("报错了啊", e);
-
   console.error(e);
-  // process.exit(1);
+  process.exit(1);
 });
 
 function showHelp() {

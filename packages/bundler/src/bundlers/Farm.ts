@@ -13,9 +13,10 @@ export class Farm extends BaseBundler {
       root: this.opts.root,
       compilation: {
         persistentCache: false,
-        presetEnv: false,
-        progress: false,
         sourcemap: false,
+        output: {
+          targetEnv: "browser-next"
+        }
       },
       plugins: [
         '@farmfe/plugin-react'
@@ -25,21 +26,16 @@ export class Farm extends BaseBundler {
   }
 
   async dev(_opts: BaseBundlerBuildOpts = {}) {
-    console.log(this.opts.root);
-    console.log("走哪里去了啊");
 
     const buildOpts = {
       root: this.opts.root,
       clearScreen: false,
       compilation: {
         persistentCache: false,
-        presetEnv: false,
         progress: false,
       },
       plugins: ['@farmfe/plugin-react']
     };
-    // const config = resolveConfig(buildOpts)
-    // console.log(config);
 
     await start(buildOpts);
   }
